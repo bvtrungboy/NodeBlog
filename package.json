@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "description",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon --inspect index.js localhost 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
+  }
+}
