@@ -1,0 +1,13 @@
+@import 'variable';
+
+.test{
+    font: 5em sans-serif;
+    background-color: rebeccapurple;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1{
+    color: $color-red;
+    font-weight: bold;
+}
