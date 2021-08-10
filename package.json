@@ -4,13 +4,21 @@
   "description": "description",
   "main": "src/index.js",
   "scripts": {
-    "prettier": "prettier --single-quote --trailing-comma all --write src/**/*.{js,json,scss}",
+    "prettier": "lint-staged",
     "start": "nodemon --inspect src/index.js localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass -w src/resource/scss -o src/public/css"
   },
   "author": "Boo",
   "license": "MIT",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma --tab-width 4 all --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
