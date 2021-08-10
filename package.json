@@ -4,6 +4,7 @@
   "description": "description",
   "main": "src/index.js",
   "scripts": {
+    "prettier": "prettier --single-quote --trailing-comma all --write src/**/*.{js,json,scss}",
     "start": "nodemon --inspect src/index.js localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass -w src/resource/scss -o src/public/css"
@@ -13,7 +14,10 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
-    "nodemon": "^2.0.12"
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
