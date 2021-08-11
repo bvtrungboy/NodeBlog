@@ -24,6 +24,7 @@
     "express-handlebars": "^5.3.3",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
+    "mongoose": "^5.13.6",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
   },

@@ -15,6 +15,12 @@ app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'resource/views'));
 
+const db = require('./config/db/index');
+
+//connect db
+
+db.connect();
+
 route(app);
 
 app.listen(3000);
