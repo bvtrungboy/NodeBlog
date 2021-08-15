@@ -5,8 +5,6 @@ async function connect(){
         await mongoose.connect('mongodb+srv://Admin:admin@boocluster.sjiij.mongodb.net/myFirstDatabase', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true
       });
       console.log("Connect successfully");
     } catch (error) {

@@ -3,7 +3,7 @@ const newRouter = require('./news');
 function route(app) {
   app.use('/news', newRouter);
 
-  app.get('/', (req, res) => {
+  app.use('/', (req, res) => {
     res.render('home');
   });
 }
