@@ -1,11 +1,11 @@
 const newRouter = require('./news');
+const sourceRouter = require('./courses');
 
 function route(app) {
-  app.use('/news', newRouter);
+  //app.use('/news', newRouter);
 
-  app.use('/', (req, res) => {
-    res.render('home');
-  });
+  app.use('/', newRouter);
+  app.use('/courses', sourceRouter);
 }
 
 module.exports = route;

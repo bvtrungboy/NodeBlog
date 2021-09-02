@@ -6,7 +6,7 @@ class NewsController {
   //[Get] / news
    index(req, res, next) {
     Course.find({})
-    .then(courses => res.render('news', {
+    .then(courses => res.render('home', {
       courses: multipleMongooseToObject(courses)
     }))
     .catch(err => next(err));
