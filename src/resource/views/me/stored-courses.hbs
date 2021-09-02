@@ -12,15 +12,53 @@
         </thead>
         <tbody>
             {{#each courses}}
-                <tr>
-                    <th scope="row">{{sum @index 1}}</th>
-                    <td>{{this.name}}</td>
-                    <td>{{this.description}}</td>
-                    <td>{{this.createdAt}}</td>
-                    <td><a class="btn btn-link" href="/courses/{{this._id}}/edit">Edit</a></td>
-                    <td><a class="btn btn-link">Delete</a></td>
-                </tr>
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.createdAt}}</td>
+                <td><a class="btn btn-link" href="/courses/{{this._id}}/edit">Edit</a></td>
+                <td><a class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}"
+                        data-bs-target="#exampleModal">Delete</a></td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+<!-- Modal. Confirm Delete -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you want to delete this course?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnDeleteCourse" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Delete Hidden Form -->
+<form method="POST" name="deleteForm"></form>
+
+<script>
+    var exampleModal = document.getElementById('exampleModal');
+    var formDelete  = document.forms['deleteForm'];
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var idCourse = button.getAttribute('data-id');
+        var btnDeleteCourse = document.getElementById('btnDeleteCourse');
+
+        btnDeleteCourse.onclick = function(){
+          formDelete.action = '/courses/' + idCourse + '?_method=Delete';
+          formDelete.submit();
+        }
+    })
+</script>
