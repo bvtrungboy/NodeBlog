@@ -1,5 +1,5 @@
 <div class="mt-4">
-    <h3><a href="/me/trash/courses">Trash ({{deletedCourses}})</a></h3>
+    <h3>Trash Page</h3>
     <table class="table">
         <thead>
             <tr>
@@ -17,16 +17,14 @@
                 <td>{{this.name}}</td>
                 <td>{{this.description}}</td>
                 <td>{{this.createdAt}}</td>
-                <td><a class="btn btn-link" href="/courses/{{this._id}}/edit">Edit</a></td>
+                <td><a class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a></td>
                 <td><a class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}"
-                        data-bs-target="#exampleModal">Delete</a></td>
+                        data-bs-target="#exampleModal">Force Delete</a></td>
             </tr>
             {{else}}
             <tr>
                 <td colspan="5">
-                    <label>You don't have any course?
-                        <a href="/courses/create">Enter this link to up your course.</a>
-                    </label>
+                    <label>Trash is empty.</label>
                 </td>
             </tr>
             {{/each}}
@@ -55,18 +53,31 @@
 
 <!--Delete Hidden Form -->
 <form method="POST" name="deleteForm"></form>
+<form method="POST" name="restoreForm"></form>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     var exampleModal = document.getElementById('exampleModal');
     var formDelete = document.forms['deleteForm'];
+    var restoreDelete = document.forms['restoreForm'];
     exampleModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;
         var idCourse = button.getAttribute('data-id');
         var btnDeleteCourse = document.getElementById('btnDeleteCourse');
 
         btnDeleteCourse.onclick = function () {
-            formDelete.action = '/courses/' + idCourse + '?_method=Delete';
+            formDelete.action = '/courses/' + idCourse + '/forceDelete?_method=Delete';
             formDelete.submit();
         }
-    })
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var btnRs = $(".btn-restore");
+        btnRs.click(function (e) {
+            e.preventDefault();
+            var courseId = $(this).data('id');
+            restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        })
+    });
 </script>
